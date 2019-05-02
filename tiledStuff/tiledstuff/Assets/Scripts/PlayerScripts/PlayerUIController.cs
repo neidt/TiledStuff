@@ -15,19 +15,21 @@ public class PlayerUIController : MonoBehaviour
     /// </summary>
     private Slider healthSlider;
 
-    //private Slider manaSlider;
-    
+    /// <summary>
+    /// reference to the stamina/mana slider
+    /// </summary>
+    private Slider manaSlider;       
 
-    
-
-        
-
+    /// <summary>
+    /// assigns all the needed references
+    /// </summary>
     void Start()
     {
         phealth = this.gameObject.GetComponent<PlayerHealth>();
         healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
         healthSlider.value = phealth.playerMaxHealth;
-        
+        manaSlider = GameObject.Find("StaminaSlider").GetComponent<Slider>();
+        manaSlider.value = phealth.playerMaxMana;
     }
 
     

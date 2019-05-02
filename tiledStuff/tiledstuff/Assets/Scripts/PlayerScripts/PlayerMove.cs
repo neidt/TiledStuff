@@ -41,29 +41,30 @@ public class PlayerMove : MonoBehaviour
         {
             MoveDown();
         }
-    //    if (Input.GetKey(KeyCode.LeftShift))
-    //    {
-    //        playerAnimator.SetTrigger("running");
-    //        speed += 2f;
-    //    }
 
-    //    if (Input.GetKey(KeyCode.W))
-    //    {
-    //        MoveUp();
-    //    }
-    //    if (Input.GetKey(KeyCode.S))
-    //    {
-    //        MoveDown();
-    //    }
-    //    if (Input.GetKey(KeyCode.A))
-    //    {
-    //        MoveLeft();
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            playerAnimator.SetTrigger("running");
+            speed += 2f;
+        }
 
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.D))
-    //    {
-    //        MoveRight();
-    //    }
+        if (Input.GetKey(KeyCode.W))
+        {
+            MoveUp();
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            MoveDown();
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            MoveLeft();
+
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            MoveRight();
+        }
     }
 
     #region eh

@@ -38,8 +38,8 @@ public class EnemyAttackAI : MonoBehaviour
         isAttacking = true;
         nextAttack = Time.time + attackRate;
 
-        RaycastHit2D rayHitLeft = Physics2D.Raycast(transform.position, Vector3.left, 1f, playerLayer);
-        RaycastHit2D rayHitRight = Physics2D.Raycast(transform.position, Vector3.right, 1f, playerLayer);
+        RaycastHit2D rayHitLeft = Physics2D.Raycast(transform.position, Vector3.left, 1.5f);
+        RaycastHit2D rayHitRight = Physics2D.Raycast(transform.position, Vector3.right, 1.5f);
 
         if (rayHitLeft.collider.tag == "Player")
         {
@@ -71,6 +71,17 @@ public class EnemyAttackAI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// checks if player in range
+    /// </summary>
+    /// <param name="other"> the thing hitting us </param>
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            playerInRange = true;
+        }
+    }
     /// <summary>
     /// checks for collisions on our trigger
     /// </summary>

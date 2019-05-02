@@ -7,8 +7,14 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("the player's max health")]
     public float playerMaxHealth = 100;
 
+    [Tooltip("the player's max stamina/mana")]
+    public float playerMaxMana = 100;
+
     [Tooltip("the player's current health")]
     public float playerCurrentHealth;
+
+    [Tooltip("the player's current mana")]
+    public float playerCurrentMana;
 
     [Tooltip("Player animator component")]
     public Animator playerAnimator;
@@ -16,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         playerCurrentHealth = playerMaxHealth;
+        playerCurrentMana = playerMaxMana;
     }
 
     /// <summary>
@@ -34,6 +41,23 @@ public class PlayerHealth : MonoBehaviour
             Die();
         }
     }
+
+    /// <summary>
+    /// this functions depletes the player's mana
+    /// </summary>
+    /// <param name="amount"></param>
+    public void UseMana(float amount)
+    {
+        if(playerCurrentMana <= 0)
+        {
+            playerCurrentMana = 0;
+        }
+        else
+        {
+            playerCurrentMana -= amount;
+        }
+    }
+
     /// <summary>
     /// this function heals the player
     /// usually called by health restore items

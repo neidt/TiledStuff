@@ -8,6 +8,7 @@ public class MapLoader2 : MonoBehaviour
 {
     public TextAsset tiledAsset;
     public Sprite[] sprites;
+    public GameObject enemyObj;
     public int mapWidth, mapHeight, tileWidth, tileHeight;
 
     void Start()
@@ -104,16 +105,16 @@ public class MapLoader2 : MonoBehaviour
                             xpos += pixelScale;
                             continue;
                         }
-                        
+
                         GameObject go = new GameObject();
                         go.name = "Tile from layer " + layer.Attributes["name"].Value;
                         go.transform.parent = layerGO.transform;
                         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
                         sr.transform.position = new Vector3(xpos, ypos, 0);
                         sr.sortingOrder = layerCount;
-                        
+
                         sr.sprite = sprites[spriteNum - 1];
-                        
+
                         AddStuff(go, layer.Attributes["name"].Value);
 
                         posCounter++;
@@ -150,6 +151,8 @@ public class MapLoader2 : MonoBehaviour
                         Vector2 playerPos = new Vector2(float.Parse(objectTile.Attributes["x"].Value) / tileWidth, -float.Parse(objectTile.Attributes["y"].Value) / tileHeight);
                         player.transform.position = playerPos;
                     }
+
+
                 }
                 else
                 {
@@ -183,6 +186,13 @@ public class MapLoader2 : MonoBehaviour
                                 go.AddComponent<Pickup>().Initialize();
                                 break;
                             case ObjectPropertyType.Enemy:
+
+                                float xPos = float.Parse(objectTile.Attributes["x"].Value);
+                                float yPos = float.Parse(objectTile.Attributes["y"].Value);
+                                go = Instantiate(enemyObj, go.transform);
+                                enemyObj.transform.position = new Vector3(xPos, yPos);
+
+
                                 go.AddComponent<Enemy>().Initialize();
                                 break;
                             default:
