@@ -16,6 +16,9 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("the player's current mana")]
     public float playerCurrentMana;
 
+    [Tooltip("amount to heal")]
+    public float healPickupAmount = 5f;
+
     [Tooltip("Player animator component")]
     public Animator playerAnimator;
     
@@ -23,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
     {
         playerCurrentHealth = playerMaxHealth;
         playerCurrentMana = playerMaxMana;
+      
     }
 
     /// <summary>
@@ -59,19 +63,29 @@ public class PlayerHealth : MonoBehaviour
     }
 
     /// <summary>
-    /// this function heals the player
-    /// usually called by health restore items
+    /// this function heals the player's health and mana
+    /// usually called by restore pickups
     /// </summary>
     /// <param name="amount"> the amount of health to give the player </param>
     public void HealPlayer(float amount)
     {
-        if (playerCurrentHealth < playerMaxHealth)
+        if (playerCurrentHealth < playerMaxHealth || playerCurrentMana < playerMaxMana)
         {
             playerCurrentHealth += amount;
+            playerCurrentMana += amount;
         }
-        else if(playerCurrentHealth >= playerMaxHealth)
+        else if(playerCurrentHealth >= playerMaxHealth || playerCurrentMana >= playerMaxMana)
         {
             playerCurrentHealth = playerMaxHealth;
+            playerCurrentMana = playerMaxMana;
+        }
+    }
+
+    private void Update()
+    {
+        if (playerCurrentMana < playerMaxMana)
+        {
+            playerCurrentMana += .05f;
         }
     }
 
@@ -84,4 +98,7 @@ public class PlayerHealth : MonoBehaviour
         playerAnimator.SetTrigger("die");
         this.gameObject.SetActive(false);
     }
+
+    
+
 }

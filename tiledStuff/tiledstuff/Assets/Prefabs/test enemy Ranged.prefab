@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2671310875810583746}
   - component: {fileID: 2671310875810583745}
   - component: {fileID: 2671310875810583748}
-  - component: {fileID: 2671310875810583749}
-  - component: {fileID: 8044934331988621853}
+  - component: {fileID: 5582736794262963839}
+  - component: {fileID: 2826783879574440882}
   m_Layer: 11
-  m_Name: test enemy
+  m_Name: test enemy Ranged
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: f923d4ad7d6556b43b87bdae611af71b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.5450072, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &2671310875810583748
 MonoBehaviour:
@@ -128,7 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHealth: 50
   enemyCurrentHealth: 0
---- !u!114 &2671310875810583749
+  enemyAnim: {fileID: 0}
+--- !u!114 &5582736794262963839
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,19 +138,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2671310875810583744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d19df1473680ed468fa16d34a0b63b8, type: 3}
+  m_Script: {fileID: 11500000, guid: cf594ec20592ca545a25cc381b61ecb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
   playerInRange: 0
-  speed: 2
-  attackRate: 1.5
+  attackRate: 2
   timeTillAttack: 1
-  attackDamage: 1
+  attackDamage: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
---- !u!95 &8044934331988621853
+  enemyAnim: {fileID: 0}
+--- !u!95 &2826783879574440882
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

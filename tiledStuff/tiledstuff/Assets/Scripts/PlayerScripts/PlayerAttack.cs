@@ -12,6 +12,14 @@ public class PlayerAttack : MonoBehaviour
 
     [Tooltip("the amount of damage the player does")]
     public float playerRangedDamage = 1f;
+    
+    [Tooltip("The object for the beam attack")]
+    public LineRenderer lazer;
+    public Transform lazerStart;
+
+
+    [Tooltip("Is the player using ranged attack?")]
+    public bool isRangedAttacking = false;
 
     [Tooltip("Mana use values for ranged and melee attacks")]
     public float rangedManaCost = 2f;
@@ -29,17 +37,22 @@ public class PlayerAttack : MonoBehaviour
     private PlayerMove playerMoveScript;
     private PlayerHealth playerHealthScript;
 
+    /// <summary>
+    /// ref to the player object
+    /// </summary>
     private GameObject player;
-
 
     private void Start()
     {
         playerMoveScript = this.gameObject.GetComponent<PlayerMove>();
         playerHealthScript = this.gameObject.GetComponent<PlayerHealth>();
         player = this.gameObject;
+
+        //linerenderer stuffs
+        lazer = this.gameObject.GetComponent<LineRenderer>();
+        lazer.enabled = true;
+        lazer.useWorldSpace = false;
     }
-
-
 
     /// <summary>
     /// checks for attacking input
@@ -50,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
         {
             BasicAttack();
         }
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             RangedAttack();
         }
@@ -71,7 +84,7 @@ public class PlayerAttack : MonoBehaviour
             if (rayHit2D.collider.tag == "Enemy")
             {
                 Debug.Log("in range; staff hitting enemy; attacking");
-                
+
                 rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
             }
         }
@@ -81,7 +94,7 @@ public class PlayerAttack : MonoBehaviour
             if (rayHit2D.collider.tag == "Enemy")
             {
                 Debug.Log("in range; staff hitting enemy; attacking");
-                
+
                 rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
             }
         }
@@ -91,7 +104,7 @@ public class PlayerAttack : MonoBehaviour
             if (rayHit2D.collider.tag == "Enemy")
             {
                 Debug.Log("in range; staff hitting enemy; attacking");
-                
+
                 rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
             }
         }
@@ -102,7 +115,7 @@ public class PlayerAttack : MonoBehaviour
             if (rayHit2D.collider.tag == "Enemy")
             {
                 Debug.Log("in range; staff hitting enemy; attacking");
-                
+
                 rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
             }
         }
@@ -115,16 +128,27 @@ public class PlayerAttack : MonoBehaviour
     /// </summary>
     public void RangedAttack()
     {
+        isRangedAttacking = true;
+
+        lazerStart = GameObject.Find("staff").GetComponent<Transform>();
+
         playerAnimator.SetTrigger("attk");
         playerHealthScript.UseMana(rangedManaCost);
 
         if (playerMoveScript.isMovingUp)
         {
             RaycastHit2D rayHit2DUp = Physics2D.Raycast(transform.position, Vector3.up, 2f, enemies);
+
+            //line renderer stuff
+            lazerStart = this.gameObject.transform;
+            lazer.SetPosition(0, lazerStart.position);
+            lazer.SetPosition(1, rayHit2DUp.transform.position);
+            lazer.enabled = true;
+            
             if (rayHit2DUp.collider.tag == "Enemy")
             {
                 Debug.Log("in range; beam hitting enemy up, ranged attacking");
-                
+                            
                 rayHit2DUp.transform.GetComponent<EnemyHealth>().TakeDamage(playerRangedDamage);
             }
         }
@@ -132,20 +156,34 @@ public class PlayerAttack : MonoBehaviour
         if (playerMoveScript.isMovingDown)
         {
             RaycastHit2D rayHit2DDown = Physics2D.Raycast(transform.position, Vector3.down, 2f, enemies);
+
+            //line renderer stuff
+            lazerStart = this.gameObject.transform;
+            lazer.SetPosition(0, lazerStart.position);
+            lazer.SetPosition(1, rayHit2DDown.transform.position);
+            lazer.enabled = true;
+
             if (rayHit2DDown.collider.tag == "Enemy")
             {
                 Debug.Log("in range; beam hitting enemy down, ranged attacking");
-                
+
                 rayHit2DDown.transform.GetComponent<EnemyHealth>().TakeDamage(playerRangedDamage);
             }
         }
         if (playerMoveScript.isMovingRight)
         {
             RaycastHit2D rayHit2DRight = Physics2D.Raycast(transform.position, Vector3.right, 2f, enemies);
+
+            //line renderer stuff
+            lazerStart = this.gameObject.transform;
+            lazer.SetPosition(0,lazerStart.position);
+            lazer.SetPosition(1, rayHit2DRight.transform.position);
+            lazer.enabled = true;
+
             if (rayHit2DRight.collider.tag == "Enemy")
             {
                 Debug.Log("in range; beam hitting enemy right, ranged attacking");
-                
+
                 rayHit2DRight.transform.GetComponent<EnemyHealth>().TakeDamage(playerRangedDamage);
             }
         }
@@ -153,12 +191,28 @@ public class PlayerAttack : MonoBehaviour
         if (playerMoveScript.isMovingLeft)
         {
             RaycastHit2D rayHit2DLeft = Physics2D.Raycast(transform.position, Vector3.left, 2f, enemies);
+
+            //line renderer stuff
+            lazerStart = this.gameObject.transform;
+            lazer.SetPosition(0, lazerStart.position);
+            lazer.SetPosition(1, rayHit2DLeft.transform.position);
+            lazer.enabled = true;
+
             if (rayHit2DLeft.collider.tag == "Enemy")
             {
                 Debug.Log("in range; beam hitting enemy left, ranged attacking");
-                                
+
                 rayHit2DLeft.transform.GetComponent<EnemyHealth>().TakeDamage(playerRangedDamage);
             }
         }
+
+    }
+
+    /// <summary>
+    /// this stops the ranged attack
+    /// </summary>
+    public void StopAttack()
+    {
+        isRangedAttacking = false;
     }
 }

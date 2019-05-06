@@ -4,11 +4,13 @@ using UnityEngine;
 using System.Xml;
 using System;
 
+
 public class MapLoader2 : MonoBehaviour
 {
     public TextAsset tiledAsset;
     public Sprite[] sprites;
     public GameObject enemyObj;
+    public GameObject rangedEnemyObj;
     public GameObject pickupObj;
 
     public int mapWidth, mapHeight, tileWidth, tileHeight;
@@ -162,9 +164,18 @@ public class MapLoader2 : MonoBehaviour
 
                         float xPos = float.Parse(objectTile.Attributes["x"].Value);
                         float yPos = float.Parse(objectTile.Attributes["y"].Value);
-                        GameObject go = Instantiate(enemyObj);
-                        go.transform.position = new Vector3(xPos/tileWidth, -yPos / tileHeight);
-                        go.transform.parent = objectGO.transform;
+                        if (UnityEngine.Random.Range(0, 101) > 50)
+                        {
+                            GameObject go = Instantiate(enemyObj);
+                            go.transform.position = new Vector3(xPos / tileWidth, -yPos / tileHeight);
+                            go.transform.parent = objectGO.transform;
+                        }
+                        else
+                        {
+                            GameObject go = Instantiate(rangedEnemyObj);
+                            go.transform.position = new Vector3(xPos / tileWidth, -yPos / tileHeight);
+                            go.transform.parent = objectGO.transform;
+                        }
                     }
 
                     //found a pickup spot

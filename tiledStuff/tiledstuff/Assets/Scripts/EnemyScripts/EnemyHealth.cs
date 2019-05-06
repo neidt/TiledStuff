@@ -10,12 +10,16 @@ public class EnemyHealth : MonoBehaviour
     [Tooltip("The current health of this object")]
     public float enemyCurrentHealth;
 
+    [Tooltip("enemy animator component")]
+    public Animator enemyAnim;
+
     /// <summary>
     /// sets up the variables
     /// </summary>
     void Start()
     {
         enemyCurrentHealth = enemyMaxHealth;
+        enemyAnim = this.gameObject.GetComponent<Animator>();
     }
 
     /// <summary>
@@ -26,6 +30,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (enemyCurrentHealth > 0)
         {
+            enemyAnim.SetTrigger("takedmg");
             enemyCurrentHealth -= damage;
         }
         else
@@ -39,7 +44,8 @@ public class EnemyHealth : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        //kills player
+        //kills this thing
+        enemyAnim.SetTrigger("die");
         this.gameObject.SetActive(false);
         Destroy(this.gameObject, 3f);
     }
