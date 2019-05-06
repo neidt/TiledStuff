@@ -31,11 +31,15 @@ public class PlayerUIController : MonoBehaviour
         manaSlider = GameObject.Find("StaminaSlider").GetComponent<Slider>();
         manaSlider.value = phealth.playerMaxMana;
     }
-
     
-
     void Update()
     {
         healthSlider.value = phealth.playerCurrentHealth;
+        manaSlider.value = phealth.playerCurrentMana;
+
+        if(phealth.playerCurrentMana < phealth.playerMaxMana)
+        {
+            phealth.playerCurrentMana += .01f;
+        }
     }
 }

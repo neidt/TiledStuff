@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class EnemyAttackAI : MonoBehaviour
 {
-
+    [Tooltip("is enemy attacking?")]
     public bool isAttacking = false;
 
+    [Tooltip("Is Player in range?")]
     public bool playerInRange = false;
 
+    [Tooltip("Speed of this enemy")]
+    public float speed = 2f;
+
+    [Tooltip("The rate of attacks")]
     public float attackRate = 1f;
-
-    private float nextAttack;
-
+    
     [Tooltip("time till next attack")]
     public float timeTillAttack = 0;
 
@@ -21,12 +24,35 @@ public class EnemyAttackAI : MonoBehaviour
 
     [Tooltip("layermask for raycast to find the player")]
     public LayerMask playerLayer;
+    
+    /// <summary>
+    /// time till next attack
+    /// </summary>
+    private float nextAttack;
+
+    //chasing stuff
+
+    /// <summary>
+    /// player reference
+    /// </summary>
+    private Transform playerToChase;
+    
+
+    private void Start()
+    {
+        playerToChase = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
 
     private void Update()
     {
-        if (playerInRange && Time.time > nextAttack)
+        if ((Vector2.Distance(this.transform.position, playerToChase.transform.position) < 1f && Time.time > nextAttack))
         {
             Attack();
+        }
+        else if(Vector2.Distance(this.transform.position, playerToChase.transform.position) > .5f &&
+            (Vector2.Distance(this.transform.position, playerToChase.transform.position) < 3f))
+        {
+            transform.position = Vector2.MoveTowards(transform.position, playerToChase.transform.position, speed * Time.deltaTime);
         }
     }
 

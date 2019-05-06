@@ -9,6 +9,8 @@ public class MapLoader2 : MonoBehaviour
     public TextAsset tiledAsset;
     public Sprite[] sprites;
     public GameObject enemyObj;
+    public GameObject pickupObj;
+
     public int mapWidth, mapHeight, tileWidth, tileHeight;
 
     void Start()
@@ -140,6 +142,7 @@ public class MapLoader2 : MonoBehaviour
 
             foreach (XmlNode objectTile in actuallyObjects)
             {
+                //check for player and enemy spawns
                 if (objectTile.Attributes["gid"] == null)
                 {
                     //Debug.Log("its unique.");
@@ -152,55 +155,85 @@ public class MapLoader2 : MonoBehaviour
                         player.transform.position = playerPos;
                     }
 
+                    //found an enemy spawn point
+                    else if (objectTile.SelectSingleNode("properties").SelectSingleNode("property").Attributes["name"].Value == "EnemySpawn")
+                    {
+                        //Debug.Log("Found an enemy tile!");
+
+                        float xPos = float.Parse(objectTile.Attributes["x"].Value);
+                        float yPos = float.Parse(objectTile.Attributes["y"].Value);
+                        GameObject go = Instantiate(enemyObj);
+                        go.transform.position = new Vector3(xPos/tileWidth, -yPos / tileHeight);
+                        go.transform.parent = objectGO.transform;
+                    }
+
+                    //found a pickup spot
+                    else if(objectTile.SelectSingleNode("properties").SelectSingleNode("property").Attributes["name"].Value == "PickupSpawn")
+                    {
+                        Debug.Log("found a pickup tile spot");
+                        float xPos = float.Parse(objectTile.Attributes["x"].Value);
+                        float yPos = float.Parse(objectTile.Attributes["y"].Value);
+                        GameObject go = Instantiate(pickupObj);
+                        go.transform.position = new Vector3(xPos / tileWidth, -yPos / tileHeight);
+                        go.transform.parent = objectGO.transform;
+                        go.AddComponent<Pickup>();
+                       
+                    }
 
                 }
-                else
+                else//what is this for? i forget
                 {
                     GameObject go = new GameObject();
                     go.name = objectTile.Attributes["id"].Value;
                     go.transform.parent = objectGO.transform;
-
+                    
+                    //set up sprite renderer stuffs
                     SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
                     sr.transform.position = new Vector3(float.Parse(objectTile.Attributes["x"].Value) / tileWidth, -float.Parse(objectTile.Attributes["y"].Value) / tileHeight);
                     sr.sortingOrder = objLayerCount;
-
+                    
+                    //get current sprite
                     int currentSprite = int.Parse(objectTile.Attributes["gid"].Value) - 1;
                     go.GetComponent<SpriteRenderer>().sprite = sprites[currentSprite];
 
+                    #region healp
+
+                    ////found an enemy spawn point
+                    //if (objectTile.SelectSingleNode("properties").SelectSingleNode("property").Attributes["name"].Value == "EnemySpawn")
+                    //{
+                    //    Debug.Log("Found an enemy tile!");
+
+                    //    float xPos = float.Parse(objectTile.Attributes["x"].Value);
+                    //    float yPos = float.Parse(objectTile.Attributes["y"].Value);
+                    //    go = Instantiate(enemyObj, go.transform);
+                    //    enemyObj.transform.position = new Vector3(xPos, yPos);
+                    //}
+
                     //check if this is a special tile
-                    if (specialTilesDict.ContainsKey(currentSprite))
-                    {
-                        //Debug.Log("This is special: " + go.name);
-
-                        //check what type of tile
-                        //Debug.Log(specialTilesDict[currentSprite].Attributes["id"].Value);
-                        XmlNodeList propertyList = specialTilesDict[currentSprite].SelectSingleNode("properties").SelectNodes("property");
-                        //Debug.Log(propertyList[propertyList.Count - 1].Attributes["value"].Value);
-                        ObjectPropertyType tileType = (ObjectPropertyType)Enum.Parse(typeof(ObjectPropertyType), propertyList[propertyList.Count - 1].Attributes["value"].Value);
-                        switch (tileType)
-                        {
-                            case ObjectPropertyType.Door:
-                                go.AddComponent<Door>().Initialize();
-                                break;
-                            case ObjectPropertyType.Pickup:
-                                go.AddComponent<Pickup>().Initialize();
-                                break;
-                            case ObjectPropertyType.Enemy:
-
-                                float xPos = float.Parse(objectTile.Attributes["x"].Value);
-                                float yPos = float.Parse(objectTile.Attributes["y"].Value);
-                                go = Instantiate(enemyObj, go.transform);
-                                enemyObj.transform.position = new Vector3(xPos, yPos);
-
-
-                                go.AddComponent<Enemy>().Initialize();
-                                break;
-                            default:
-                                Debug.Log("what do i do with this special tile");
-                                break;
-                        }
-                    }
+                    //if (specialTilesDict.ContainsKey(currentSprite))
+                    //{
+                    //    //check what type of tile
+                    //    XmlNodeList propertyList = specialTilesDict[currentSprite].SelectSingleNode("properties").SelectNodes("property");
+                    //    ObjectPropertyType tileType = (ObjectPropertyType)Enum.Parse(typeof(ObjectPropertyType), propertyList[propertyList.Count - 1].Attributes["value"].Value);
+                    //    switch (tileType)
+                    //    {
+                    //        case ObjectPropertyType.Door:
+                    //            go.AddComponent<Door>().Initialize();
+                    //            break;
+                    //        case ObjectPropertyType.Pickup:
+                    //            go.AddComponent<Pickup>().Initialize();
+                    //            break;
+                    //        case ObjectPropertyType.Enemy:
+                    //            //Debug.Log("Found an enemy tile!");
+                    //            go.AddComponent<Enemy>().Initialize();
+                    //            break;
+                    //        default:
+                    //            Debug.Log("what do i do with this special tile");
+                    //            break;
+                    //    }
+                    //}
                     //check if this is a door
+                    #endregion
                 }
             }//closes object layer loop
         }//end foreach object in the object layer

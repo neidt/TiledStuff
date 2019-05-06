@@ -21,7 +21,12 @@ public class PlayerMove : MonoBehaviour
     public bool isMovingLeft = false;
     public bool isMovingUp = false;
     public bool isMovingDown = false;
+    [Tooltip("bools for attack directions")]
 
+    public bool isFacingRight = false;
+    public bool isFacingLeft = false;
+    public bool isFacingUp = false;
+    public bool isFacingDown = false;
 
     void Update()
     {
@@ -107,6 +112,12 @@ public class PlayerMove : MonoBehaviour
         {
             transform.position += Vector3.right * Time.deltaTime * speed;
             transform.localScale = new Vector3(-1, 1, 1);
+
+            isFacingLeft = false;
+            isFacingUp = false;
+            isFacingDown = false;
+
+            isFacingRight = true;
         }
     }
 
@@ -116,6 +127,11 @@ public class PlayerMove : MonoBehaviour
         {
             transform.position += Vector3.left * Time.deltaTime * speed;
             transform.localScale = new Vector3(1, 1, 1);
+
+            isFacingRight = false;
+            isFacingUp = false;
+            isFacingDown = false;
+            isFacingLeft = true;
         }
     }
 
@@ -123,11 +139,19 @@ public class PlayerMove : MonoBehaviour
     {
         if (Physics2D.Raycast(transform.position, Vector3.down, rayLength, walls).collider == null && isMovingDown)
             transform.position += Vector3.down * Time.deltaTime * speed;
+        isFacingLeft = false;
+        isFacingUp = false;
+        isFacingRight = false;
+        isFacingDown = true;
     }
     
     public void MoveUp()
     {
         if (Physics2D.Raycast(transform.position, Vector3.up, rayLength, walls).collider == null && isMovingUp)
             transform.position += Vector3.up * Time.deltaTime * speed;
+        isFacingLeft = false;
+        isFacingRight = false;
+        isFacingDown = false;
+        isFacingUp = true;
     }
 }
