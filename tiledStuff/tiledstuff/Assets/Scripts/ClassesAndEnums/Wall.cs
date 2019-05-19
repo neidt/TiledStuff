@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//@Author Natalie Eidt
 public class Wall : MonoBehaviour
 {
+    /// <summary>
+    /// initializes the object
+    /// </summary>
     public void Initialize()
     {
         this.gameObject.AddComponent<BoxCollider2D>();

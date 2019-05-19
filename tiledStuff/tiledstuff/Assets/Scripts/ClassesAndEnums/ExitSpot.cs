@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//@Author Natalie Eidt
 public class ExitSpot : MonoBehaviour
 {
     /// <summary>

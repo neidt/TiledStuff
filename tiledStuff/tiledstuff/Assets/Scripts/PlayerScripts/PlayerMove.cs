@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//@Author Natalie Eidt
 public class PlayerMove : MonoBehaviour
 {
     [Tooltip("the player's base move speed")]
@@ -72,7 +73,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    #region eh
+    #region set movement directions
     public void SetMovingRight()
     {
         StopMoving();

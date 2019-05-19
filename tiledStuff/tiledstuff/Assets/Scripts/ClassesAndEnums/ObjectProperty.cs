@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum ObjectPropertyType { Door, SturdyDoor, Pickup, Enemy, ExitSpot};
+
+//@Author Natalie Eidt
+public enum ObjectPropertyType { Door, SturdyDoor, Pickup, Decor, Enemy, ExitSpot};
 
 public class ObjectProperty : MonoBehaviour
 {

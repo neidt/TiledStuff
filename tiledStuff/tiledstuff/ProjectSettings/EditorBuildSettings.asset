@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/FinishedLevels/MainMenu.unity
     guid: 7e79573afd1605342bb2f8020082726b
   - enabled: 1
-    path: Assets/Scenes/DungeonScene1.unity
+    path: Assets/Scenes/FinishedLevels/OutsideLevel.unity
+    guid: d48b6f1931f74964e9e4da084a0e0b9f
+  - enabled: 1
+    path: Assets/Scenes/FinishedLevels/DungeonScene1.unity
     guid: 6fa4335c3b7b50b4ab9318018a0b709e
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 37ef0721a5e4b88409f956292d6ff828
+    path: Assets/Scenes/FinishedLevels/DungeonScene2.unity
+    guid: 070b13571fa703c4ab473b05ccebd65c
+  - enabled: 1
+    path: Assets/Scenes/FinishedLevels/WinScene.unity
+    guid: 505d29159becfde43ba18331f0ece82d
   m_configObjects: {}

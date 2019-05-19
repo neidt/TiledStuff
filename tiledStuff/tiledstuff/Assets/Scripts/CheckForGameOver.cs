@@ -10,9 +10,9 @@ public class CheckForGameOver : MonoBehaviour
     private MapLoader2 mapLoader;
 
     /// <summary>
-    /// list of all the enemies in scene
+    /// the player in scene
     /// </summary>
-    private GameObject[] enemies;
+    private GameObject player;
 
     /// <summary>
     /// the canvas to show when winning
@@ -24,18 +24,9 @@ public class CheckForGameOver : MonoBehaviour
     {
         mapLoader = GameObject.Find("MapLoader2.0").GetComponent<MapLoader2>();
         winCanvas = GameObject.Find("WinCanvas").GetComponent<Canvas>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        if(enemies.Length <= 0)
-        {
-            EndGame();
-        }
-    }
+    
 
     public void EndGame()
     {

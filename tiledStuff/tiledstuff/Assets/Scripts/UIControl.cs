@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//@Author Natalie Eidt
 public class UIControl : MonoBehaviour
 {
     /// <summary>
@@ -81,6 +82,14 @@ public class UIControl : MonoBehaviour
     }
 
     /// <summary>
+    /// quits the game
+    /// </summary>
+    public void _QuitGame()
+    {
+        Application.Quit();
+    }
+
+    /// <summary>
     /// goes back to the main menu scene
     /// </summary>
     public void _GoToMainMenu()
@@ -125,11 +134,11 @@ public class UIControl : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
         //if main menu was loaded
-        if(level == 0)
+        if (level == 0)
         {
             creditsCanvas = GameObject.Find("CreditsCanvas");
         }
-        else if(level == 1 || level == 2)
+        else if (level == 1 || level == 2 || level == 3)
         {
             pauseMenu = GameObject.Find("PauseMenuCanvas");
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//@Author Natalie Eidt
 public class EnemyRangedAi : MonoBehaviour
 {
     [Tooltip("is enemy attacking?")]
@@ -9,9 +10,9 @@ public class EnemyRangedAi : MonoBehaviour
 
     [Tooltip("Is Player in range?")]
     public bool playerInRange = false;
-    
+
     [Tooltip("The rate of attacks")]
-    public float attackRate = 1f;
+    public float attackRate = 5f;
 
     [Tooltip("time till next attack")]
     public float timeTillAttack = 0;
@@ -24,24 +25,33 @@ public class EnemyRangedAi : MonoBehaviour
 
     [Tooltip("enemy animator component")]
     public Animator enemyAnim;
-    
+
     /// <summary>
     /// time till next attack
     /// </summary>
     private float nextAttack;
 
+    /// <summary>
+    /// the player char
+    /// </summary>
     private Transform playerToAttack;
+
+    [Header("linerenderer stuff")]
+    public LineRenderer lr;
+
 
     private void Start()
     {
         playerToAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         enemyAnim = this.gameObject.GetComponent<Animator>();
+
     }
 
     private void Update()
     {
-        if ((Vector2.Distance(this.transform.position, playerToAttack.transform.position) <= 4f && Time.time >= nextAttack))
+        if (playerInRange && Time.time >= nextAttack)
         {
+            playerToAttack = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             Attack();
         }
     }
@@ -52,34 +62,32 @@ public class EnemyRangedAi : MonoBehaviour
     public void Attack()
     {
         isAttacking = true;
-        nextAttack = Time.time - attackRate;
+        nextAttack = Time.time + attackRate;
+        Collider2D[] playerHits = Physics2D.OverlapCircleAll(this.transform.position, 4f);
 
-        RaycastHit2D rayHitLeft = Physics2D.Raycast(transform.position, Vector3.left, 4f);
-        RaycastHit2D rayHitRight = Physics2D.Raycast(transform.position, Vector3.right, 4f);
-
-        if (rayHitLeft.collider.tag == "Player")
+        foreach (Collider2D collider in playerHits)
         {
-            Debug.Log("in range; player on the left; attacking ");
+            if (collider.tag == "Player")
+            {
+                Debug.Log("hitting player; attacking ");
 
-            enemyAnim.SetTrigger("attk");
+                enemyAnim.SetTrigger("attk");
 
-            rayHitLeft.transform.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+                collider.transform.gameObject.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+            }
+            else
+            {
+                Debug.Log("enemy hitting nothing...");
+            }
         }
-        if (rayHitRight.collider.tag == "Player")
-        {
-            Debug.Log("in range; player on the right; attacking ");
 
-            enemyAnim.SetTrigger("attk");
-
-            rayHitRight.transform.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
-        }
     }
 
     /// <summary>
     /// checks for collision around the object
     /// </summary>
     /// <param name="other"> the other collider hitting our trigger </param>
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {

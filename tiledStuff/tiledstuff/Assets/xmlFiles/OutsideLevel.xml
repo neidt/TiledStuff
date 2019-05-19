@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="42">
+ <tileset firstgid="1" name="roguelikeSheet_transparent" tilewidth="16" tileheight="16" spacing="1" tilecount="1767" columns="57">
+  <image source="../../../roguelikeSheet_transparent.png" width="968" height="526"/>
+  <tile id="2">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="58">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="59">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="60">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="61">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="114">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="115">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="116">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="117">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="118">
+   <properties>
+    <property name="Type" value="Wall"/>
+   </properties>
+  </tile>
+  <tile id="471">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+  <tile id="621">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+  <tile id="622">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+  <tile id="623">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+  <tile id="678">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+  <tile id="679">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+  <tile id="680">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+  <tile id="1042">
+   <properties>
+    <property name="ExitSpot" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1097">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+  <tile id="1153">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+  <tile id="1154">
+   <properties>
+    <property name="Type" value="Decor"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer id="1" name="Background" width="25" height="25" locked="1">
+  <data encoding="csv">
+745,745,745,403,745,745,916,574,916,745,916,574,745,403,745,916,574,916,745,745,403,403,403,745,916,
+916,403,745,745,916,916,403,916,574,745,403,403,403,574,745,403,916,745,745,574,403,916,574,745,916,
+916,574,745,745,916,916,403,574,745,745,403,916,745,745,574,403,745,745,745,574,574,574,745,403,916,
+916,403,403,916,574,574,574,916,574,916,916,916,916,574,916,916,403,403,916,745,403,574,574,574,916,
+916,745,403,745,745,916,403,403,574,403,916,916,403,574,403,574,916,403,574,916,745,916,916,403,403,
+403,916,403,916,403,403,916,745,403,745,745,745,574,916,916,916,916,574,916,403,574,745,745,403,916,
+574,916,916,916,916,574,574,403,574,745,916,403,745,745,574,745,916,403,403,403,916,574,574,403,403,
+403,403,916,745,574,574,403,574,403,574,403,916,916,916,916,403,574,745,403,403,574,403,403,403,916,
+574,403,916,916,745,916,574,403,916,403,574,403,574,916,403,403,403,403,403,574,916,745,403,403,745,
+403,403,403,916,745,403,403,403,916,403,745,745,745,745,574,403,574,916,916,916,574,574,574,403,574,
+574,745,574,745,745,916,574,574,403,745,574,403,916,403,745,403,916,403,574,574,745,745,745,745,916,
+745,574,745,574,745,403,574,745,745,403,403,574,745,403,916,574,745,574,403,916,574,745,574,916,403,
+916,403,574,574,574,745,745,403,916,574,403,403,574,916,403,916,403,916,916,745,745,916,403,403,574,
+745,403,916,574,574,916,574,916,916,745,916,745,403,403,574,916,916,916,403,916,745,574,403,403,574,
+745,916,403,745,745,574,745,403,745,745,916,574,916,745,574,916,916,574,403,916,574,574,916,403,403,
+916,574,574,745,574,916,916,745,916,745,574,574,745,574,916,574,745,574,403,916,916,403,403,745,403,
+403,574,403,403,403,403,403,403,916,745,403,745,916,745,745,403,916,403,574,403,403,745,574,745,745,
+574,574,916,916,745,403,574,574,574,745,403,403,745,916,403,916,916,745,916,916,574,574,745,745,403,
+916,916,403,745,916,403,574,916,574,745,745,574,574,403,745,574,403,745,745,574,916,574,574,916,916,
+403,403,745,403,745,403,574,403,916,574,574,745,916,574,916,745,403,745,574,403,745,574,916,916,403,
+574,745,574,745,745,745,403,403,574,403,574,574,916,745,916,574,574,403,916,745,916,916,574,403,916,
+745,403,403,745,574,745,403,916,574,403,574,745,745,403,916,745,916,574,745,403,574,403,403,745,916,
+403,916,574,916,574,574,745,403,574,916,745,916,403,916,574,916,574,745,745,574,574,745,403,403,403,
+574,916,574,403,574,745,745,403,916,403,403,916,916,403,574,745,916,403,403,745,745,916,916,916,403,
+745,574,403,403,574,916,574,574,574,745,403,403,916,916,745,916,403,745,574,745,745,574,574,745,916
+</data>
+ </layer>
+ <layer id="2" name="Walls" width="25" height="25" locked="1">
+  <data encoding="csv">
+58,118,118,118,118,118,118,118,118,118,118,118,118,118,118,118,118,118,118,118,118,118,118,118,59,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,60,
+115,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,116
+</data>
+ </layer>
+ <objectgroup id="4" name="PickupsAndDoors">
+  <object id="17" gid="472" x="352" y="384" width="16" height="16"/>
+  <object id="18" gid="1155" x="32" y="368" width="16" height="16"/>
+  <object id="19" gid="1098" x="32" y="352" width="16" height="16"/>
+  <object id="20" gid="1154" x="32" y="336" width="16" height="16"/>
+  <object id="21" gid="1155" x="96" y="368" width="16" height="16"/>
+  <object id="22" gid="1098" x="96" y="352" width="16" height="16"/>
+  <object id="23" gid="1154" x="96" y="336" width="16" height="16"/>
+  <object id="24" gid="1043" x="64" y="352" width="16" height="16"/>
+  <object id="25" gid="1155" x="64" y="320" width="16" height="16"/>
+  <object id="26" gid="1098" x="64" y="304" width="16" height="16"/>
+  <object id="27" gid="1154" x="64" y="288" width="16" height="16"/>
+  <object id="28" gid="679" x="304" y="64" width="16" height="16"/>
+  <object id="29" gid="679" x="336" y="64" width="16" height="16"/>
+  <object id="30" gid="679" x="352" y="96" width="16" height="16"/>
+  <object id="31" gid="679" x="320" y="96" width="16" height="16"/>
+  <object id="32" gid="679" x="288" y="96" width="16" height="16"/>
+  <object id="33" gid="680" x="272" y="64" width="16" height="16"/>
+  <object id="34" gid="680" x="352" y="32" width="16" height="16"/>
+  <object id="35" gid="680" x="320" y="32" width="16" height="16"/>
+  <object id="36" gid="681" x="288" y="32" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="3" name="Spawns" locked="1">
+  <object id="3" x="334.614" y="336.202" width="15.7727" height="15.595">
+   <properties>
+    <property name="EnemySpawn" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="8" x="180.5" y="175.5" width="31" height="31.5">
+   <properties>
+    <property name="PlayerSpawn" type="bool" value="true"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="13" x="54" y="50.5">
+   <properties>
+    <property name="PickupSpawn" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

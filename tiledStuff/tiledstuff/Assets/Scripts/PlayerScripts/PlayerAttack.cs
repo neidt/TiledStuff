@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//@Author Natalie Eidt
 public class PlayerAttack : MonoBehaviour
 {
     [Tooltip("hitbox of the weapon")]
@@ -12,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Tooltip("the amount of damage the player does")]
     public float playerRangedDamage = 1f;
-    
+
     [Tooltip("Is the player using ranged attack?")]
     public bool isRangedAttacking = false;
 
@@ -25,6 +26,9 @@ public class PlayerAttack : MonoBehaviour
 
     [Tooltip("Player animator component")]
     public Animator playerAnimator;
+
+    [Tooltip("The prefab of the projectile")]
+    public GameObject fireballTemplate;
 
     /// <summary>
     /// ref to the movement script and health script
@@ -75,70 +79,84 @@ public class PlayerAttack : MonoBehaviour
 
         if (playerMoveScript.isFacingLeft)
         {
-            RaycastHit2D rayHit2D = Physics2D.Raycast(transform.position, Vector3.left, .7f, enemiesAndDoors);
-            if (rayHit2D.collider.tag == "Enemy")
+            RaycastHit2D rayHit2D = Physics2D.Raycast(transform.position, Vector3.left, .5f, enemiesAndDoors);
+            if (rayHit2D)
             {
-                Debug.Log("in range; staff hitting enemy; attacking");
+                if (rayHit2D.collider.tag == "Enemy")
+                {
+                    Debug.Log("in range; staff hitting enemy; attacking");
 
-                rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
+                    rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
+                }
+                else if (rayHit2D.collider.tag == "Door" || rayHit2D.collider.tag == "SturdyDoor")
+                {
+                    Debug.Log("hitting door");
+
+                    rayHit2D.transform.GetComponent<Door>().TakeDamage(playerMeleeDamage);
+                }
             }
-
-            else if (rayHit2D.collider.tag == "Door" || rayHit2D.collider.tag == "SturdyDoor")
-            {
-                Debug.Log("hitting door");
-
-                rayHit2D.transform.GetComponent<Door>().TakeDamage(playerMeleeDamage);
-            }
+            else { Debug.Log("nothing in range..."); }
         }
         if (playerMoveScript.isFacingRight)
         {
-            RaycastHit2D rayHit2D = Physics2D.Raycast(transform.position, Vector3.right, .7f, enemiesAndDoors);
-            if (rayHit2D.collider.tag == "Enemy")
+            RaycastHit2D rayHit2D = Physics2D.Raycast(transform.position, Vector3.right, .5f, enemiesAndDoors);
+            if (rayHit2D)
             {
-                Debug.Log("in range; staff hitting enemy; attacking");
+                if (rayHit2D.collider.tag == "Enemy")
+                {
+                    Debug.Log("in range; staff hitting enemy; attacking");
 
-                rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
+                    rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
+                }
+                else if (rayHit2D.collider.tag == "Door" || rayHit2D.collider.tag == "SturdyDoor")
+                {
+                    Debug.Log("hitting door");
+
+                    rayHit2D.transform.GetComponent<Door>().TakeDamage(playerMeleeDamage);
+                }
             }
-
-            else if (rayHit2D.collider.tag == "Door" || rayHit2D.collider.tag == "SturdyDoor")
-            {
-                Debug.Log("hitting door");
-
-                rayHit2D.transform.GetComponent<Door>().TakeDamage(playerMeleeDamage);
-            }
+            else { Debug.Log("nothing in range..."); }
         }
         if (playerMoveScript.isFacingUp)
         {
-            RaycastHit2D rayHit2D = Physics2D.Raycast(transform.position, Vector3.up, .7f, enemiesAndDoors);
-            if (rayHit2D.collider.tag == "Enemy")
+            RaycastHit2D rayHit2D = Physics2D.Raycast(transform.position, Vector3.up, .5f, enemiesAndDoors);
+            if (rayHit2D)
             {
-                Debug.Log("in range; staff hitting enemy; attacking");
+                if (rayHit2D.collider.tag == "Enemy")
+                {
+                    Debug.Log("in range; staff hitting enemy; attacking");
 
-                rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
-            }
-            else if (rayHit2D.collider.tag == "Door" || rayHit2D.collider.tag == "SturdyDoor")
-            {
-                Debug.Log("hitting door");
+                    rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
+                }
+                else if (rayHit2D.collider.tag == "Door" || rayHit2D.collider.tag == "SturdyDoor")
+                {
+                    Debug.Log("hitting door");
 
-                rayHit2D.transform.GetComponent<Door>().TakeDamage(playerMeleeDamage);
+                    rayHit2D.transform.GetComponent<Door>().TakeDamage(playerMeleeDamage);
+                }
             }
+            else { Debug.Log("nothing in range..."); }
         }
 
         if (playerMoveScript.isFacingDown)
         {
-            RaycastHit2D rayHit2D = Physics2D.Raycast(transform.position, Vector3.down, .7f, enemiesAndDoors);
-            if (rayHit2D.collider.tag == "Enemy")
+            RaycastHit2D rayHit2D = Physics2D.Raycast(transform.position, Vector3.down, .5f, enemiesAndDoors);
+            if (rayHit2D)
             {
-                Debug.Log("in range; staff hitting enemy; attacking");
+                if (rayHit2D.collider.tag == "Enemy")
+                {
+                    Debug.Log("in range; staff hitting enemy; attacking");
 
-                rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
-            }
-           else if(rayHit2D.collider.tag == "Door" || rayHit2D.collider.tag == "SturdyDoor")
-            {
-                Debug.Log("hitting door");
+                    rayHit2D.transform.GetComponent<EnemyHealth>().TakeDamage(playerMeleeDamage);
+                }
+                else if (rayHit2D.collider.tag == "Door" || rayHit2D.collider.tag == "SturdyDoor")
+                {
+                    Debug.Log("hitting door");
 
-                rayHit2D.transform.GetComponent<Door>().TakeDamage(playerMeleeDamage);
+                    rayHit2D.transform.GetComponent<Door>().TakeDamage(playerMeleeDamage);
+                }
             }
+            else { Debug.Log("nothing in range..."); }
         }
 
     }
@@ -149,91 +167,31 @@ public class PlayerAttack : MonoBehaviour
     /// </summary>
     public void RangedAttack()
     {
-        isRangedAttacking = true;
-
-        //lazerStart = GameObject.Find("staff").GetComponent<Transform>();
-
         playerAnimator.SetTrigger("attk");
         playerHealthScript.UseMana(rangedManaCost);
 
-        if (playerMoveScript.isMovingUp)
+        if (playerMoveScript.isFacingUp || playerMoveScript.isMovingUp)
         {
-            RaycastHit2D rayHit2DUp = Physics2D.Raycast(transform.position, Vector3.up, 2f, enemiesAndDoors);
-
-            ////line renderer stuff
-            //lazerStart = this.gameObject.transform;
-            //lazer.SetPosition(0, lazerStart.position);
-            //lazer.SetPosition(1, rayHit2DUp.transform.position);
-            //lazer.enabled = true;
-            
-            if (rayHit2DUp.collider.tag == "Enemy")
-            {
-                Debug.Log("in range; beam hitting enemy up, ranged attacking");
-                            
-                rayHit2DUp.transform.GetComponent<EnemyHealth>().TakeDamage(playerRangedDamage);
-            }
+            GameObject fireball = Instantiate(fireballTemplate, hitBox.transform);
+            fireball.GetComponent<Fireball>().MoveFireball(transform.up);
         }
 
-        if (playerMoveScript.isMovingDown)
+        if (playerMoveScript.isFacingDown || playerMoveScript.isMovingDown)
         {
-            RaycastHit2D rayHit2DDown = Physics2D.Raycast(transform.position, Vector3.down, 2f, enemiesAndDoors);
-
-            ////line renderer stuff
-            //lazerStart = this.gameObject.transform;
-            //lazer.SetPosition(0, lazerStart.position);
-            //lazer.SetPosition(1, rayHit2DDown.transform.position);
-            //lazer.enabled = true;
-
-            if (rayHit2DDown.collider.tag == "Enemy")
-            {
-                Debug.Log("in range; beam hitting enemy down, ranged attacking");
-
-                rayHit2DDown.transform.GetComponent<EnemyHealth>().TakeDamage(playerRangedDamage);
-            }
+            GameObject fireball = Instantiate(fireballTemplate, hitBox.transform);
+            fireball.GetComponent<Fireball>().MoveFireball(-transform.up);
         }
-        if (playerMoveScript.isMovingRight)
+        if (playerMoveScript.isFacingRight || playerMoveScript.isMovingRight)
         {
-            RaycastHit2D rayHit2DRight = Physics2D.Raycast(transform.position, Vector3.right, 2f, enemiesAndDoors);
-
-            ////line renderer stuff
-            //lazerStart = this.gameObject.transform;
-            //lazer.SetPosition(0,lazerStart.position);
-            //lazer.SetPosition(1, rayHit2DRight.transform.position);
-            //lazer.enabled = true;
-
-            if (rayHit2DRight.collider.tag == "Enemy")
-            {
-                Debug.Log("in range; beam hitting enemy right, ranged attacking");
-
-                rayHit2DRight.transform.GetComponent<EnemyHealth>().TakeDamage(playerRangedDamage);
-            }
+            GameObject fireball = Instantiate(fireballTemplate, hitBox.transform);
+            fireball.GetComponent<Fireball>().MoveFireball(transform.right);
         }
 
-        if (playerMoveScript.isMovingLeft)
+        if (playerMoveScript.isFacingLeft || playerMoveScript.isMovingLeft)
         {
-            RaycastHit2D rayHit2DLeft = Physics2D.Raycast(transform.position, Vector3.left, 2f, enemiesAndDoors);
-
-            ////line renderer stuff
-            //lazerStart = this.gameObject.transform;
-            //lazer.SetPosition(0, lazerStart.position);
-            //lazer.SetPosition(1, rayHit2DLeft.transform.position);
-            //lazer.enabled = true;
-
-            if (rayHit2DLeft.collider.tag == "Enemy")
-            {
-                Debug.Log("in range; beam hitting enemy left, ranged attacking");
-
-                rayHit2DLeft.transform.GetComponent<EnemyHealth>().TakeDamage(playerRangedDamage);
-            }
+            GameObject fireball = Instantiate(fireballTemplate, hitBox.transform);
+            fireball.GetComponent<Fireball>().MoveFireball(-transform.right);
         }
 
-    }
-
-    /// <summary>
-    /// this stops the ranged attack
-    /// </summary>
-    public void StopAttack()
-    {
-        isRangedAttacking = false;
     }
 }

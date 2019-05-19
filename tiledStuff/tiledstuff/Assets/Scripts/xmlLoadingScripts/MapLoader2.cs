@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Xml;
 using System;
 
+//@Author Natalie Eidt
 
 public class MapLoader2 : MonoBehaviour
 {
@@ -120,23 +121,7 @@ public class MapLoader2 : MonoBehaviour
 
                         sr.sprite = sprites[spriteNum - 1];
 
-                        //check if the current tile being loaded is a wall tile
-                        //if so, that is a wall tile, and add the stuff to it
-
-                        //XmlNodeList tilenodes = layer.ParentNode.SelectNodes("tile");
-                        //foreach (XmlNode TileNodeLayer in tilenodes)
-                        //{
-                        //    if (int.Parse(TileNodeLayer.SelectSingleNode("tile").Attributes["id"].Value) == spriteNum)
-                        //    {
-                        //        AddStuff(go, layer.Attributes["name"].Value);
-                        //    }
-                        //}
-
-
-
                         AddStuff(go, layer.Attributes["name"].Value);
-
-
 
                         posCounter++;
                         xpos += pixelScale;
@@ -260,6 +245,11 @@ public class MapLoader2 : MonoBehaviour
                                     go.AddComponent<ExitSpot>().Initialize();
                                 }
                                 break;
+                            case ObjectPropertyType.Decor:
+                                {
+
+                                }
+                                break;
                             default:
                                 {
                                     Debug.Log("what do i do with this special tile");
@@ -278,8 +268,7 @@ public class MapLoader2 : MonoBehaviour
     {
         if (layername == "Walls")
         {
-            BoxCollider2D boxCollider = sprite.AddComponent<BoxCollider2D>();
-            sprite.layer = 10;
+            sprite.AddComponent<Wall>().Initialize();
         }
     }//end add stuff
 

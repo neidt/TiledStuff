@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//@Author Natalie Eidt
 public class PlayerHealth : MonoBehaviour
 {
     [Tooltip("the player's max health")]
@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
     [Tooltip("Player animator component")]
     public Animator playerAnimator;
 
-    private GameStateController gscontrol;
+    private UIControl uiControl;
 
     void Start()
     {
@@ -98,5 +98,6 @@ public class PlayerHealth : MonoBehaviour
         //kills player
         playerAnimator.SetTrigger("die");
         this.gameObject.SetActive(false);
+        uiControl._GoToMainMenu();
     }
 }

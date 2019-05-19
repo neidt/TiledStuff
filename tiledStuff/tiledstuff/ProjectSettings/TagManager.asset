@@ -9,6 +9,8 @@ TagManager:
   - Door
   - SturdyDoor
   - Exit
+  - Fireball
+  - Wall
   layers:
   - Default
   - TransparentFX
