@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Pickup
+  - Door
+  - SturdyDoor
+  - Exit
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - WallsAndDoors
   - Enemies
   - Pickups
-  - 
+  - Exit
   - 
   - 
   - 

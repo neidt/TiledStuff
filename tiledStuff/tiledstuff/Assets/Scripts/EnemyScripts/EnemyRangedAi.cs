@@ -40,7 +40,7 @@ public class EnemyRangedAi : MonoBehaviour
 
     private void Update()
     {
-        if ((Vector2.Distance(this.transform.position, playerToAttack.transform.position) <= 6f && Time.time >= nextAttack))
+        if ((Vector2.Distance(this.transform.position, playerToAttack.transform.position) <= 4f && Time.time >= nextAttack))
         {
             Attack();
         }

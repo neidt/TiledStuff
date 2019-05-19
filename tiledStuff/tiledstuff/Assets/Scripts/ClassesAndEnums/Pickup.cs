@@ -20,7 +20,8 @@ public class Pickup : MonoBehaviour
         boxCollider = this.gameObject.AddComponent<BoxCollider2D>();
         boxCollider.isTrigger = true;
         this.gameObject.layer = LayerMask.NameToLayer("Pickups");
-        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        this.gameObject.tag = "Pickup";
+        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

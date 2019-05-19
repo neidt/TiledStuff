@@ -45,12 +45,17 @@ public class EnemyAttackAI : MonoBehaviour
 
     private void Update()
     {
+        if(playerToChase == null)
+        {
+            playerToChase = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+
         if ((Vector2.Distance(this.transform.position, playerToChase.transform.position) <= 1.5f && Time.time >= nextAttack))
         {
             Attack();
         }
-        else if (Vector2.Distance(this.transform.position, playerToChase.transform.position) > .5f &&
-            (Vector2.Distance(this.transform.position, playerToChase.transform.position) < 3f))
+        else if (Vector2.Distance(this.transform.position, playerToChase.transform.position) >= 1.5f &&
+            (Vector2.Distance(this.transform.position, playerToChase.transform.position) <= 3f))
         {
             transform.position = Vector2.MoveTowards(transform.position, playerToChase.transform.position, speed * Time.deltaTime);
         }

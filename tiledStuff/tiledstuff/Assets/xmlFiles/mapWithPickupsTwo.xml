@@ -17,6 +17,12 @@
     <property name="Type" value="Wall"/>
    </properties>
   </tile>
+  <tile id="289">
+   <properties>
+    <property name="Destructable" type="bool" value="true"/>
+    <property name="Type" value="Door"/>
+   </properties>
+  </tile>
   <tile id="398">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
@@ -270,7 +276,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="4" name="Objects">
+ <objectgroup id="4" name="Objects" locked="1">
   <object id="8" gid="399" x="592" y="352" width="16" height="16"/>
   <object id="9" gid="428" x="592" y="368" width="16" height="16"/>
   <object id="10" gid="457" x="592" y="384" width="16" height="16"/>
@@ -299,7 +305,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="5" name="Pickups" locked="1">
+ <objectgroup id="5" name="Pickups">
   <object id="39" gid="90" x="432" y="400" width="16" height="16"/>
   <object id="40" gid="90" x="656" y="176" width="16" height="16"/>
   <object id="41" gid="90" x="448" y="96" width="16" height="16"/>

@@ -21,12 +21,13 @@ public class PlayerHealth : MonoBehaviour
 
     [Tooltip("Player animator component")]
     public Animator playerAnimator;
-    
+
+    private GameStateController gscontrol;
+
     void Start()
     {
         playerCurrentHealth = playerMaxHealth;
         playerCurrentMana = playerMaxMana;
-      
     }
 
     /// <summary>
@@ -85,7 +86,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (playerCurrentMana < playerMaxMana)
         {
-            playerCurrentMana += .05f;
+            playerCurrentMana += .07f;
         }
     }
 
@@ -98,7 +99,4 @@ public class PlayerHealth : MonoBehaviour
         playerAnimator.SetTrigger("die");
         this.gameObject.SetActive(false);
     }
-
-    
-
 }

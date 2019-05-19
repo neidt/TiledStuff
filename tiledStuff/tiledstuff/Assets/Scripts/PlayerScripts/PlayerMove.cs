@@ -21,8 +21,8 @@ public class PlayerMove : MonoBehaviour
     public bool isMovingLeft = false;
     public bool isMovingUp = false;
     public bool isMovingDown = false;
-    [Tooltip("bools for attack directions")]
 
+    [Tooltip("bools for attack directions")]
     public bool isFacingRight = false;
     public bool isFacingLeft = false;
     public bool isFacingUp = false;
