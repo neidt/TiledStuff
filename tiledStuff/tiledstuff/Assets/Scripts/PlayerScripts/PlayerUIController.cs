@@ -20,6 +20,7 @@ public class PlayerUIController : MonoBehaviour
     /// </summary>
     private Slider manaSlider;       
 
+
     /// <summary>
     /// assigns all the needed references
     /// </summary>

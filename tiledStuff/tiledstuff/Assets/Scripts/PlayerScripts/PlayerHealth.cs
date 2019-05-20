@@ -96,6 +96,7 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         //kills player
+        PlayerController.instance._PlayerDied();
         playerAnimator.SetTrigger("die");
         this.gameObject.SetActive(false);
         uiControl._GoToMainMenu();

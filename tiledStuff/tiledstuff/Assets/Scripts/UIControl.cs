@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 //@Author Natalie Eidt
 public class UIControl : MonoBehaviour
 {
@@ -141,6 +142,22 @@ public class UIControl : MonoBehaviour
         else if (level == 1 || level == 2 || level == 3)
         {
             pauseMenu = GameObject.Find("PauseMenuCanvas");
+        }
+
+        //checks for completion
+        switch (level)
+        {
+            case 1:
+                LevelController.instance._CompletedLevel(1);
+                break;
+            case 2:
+                LevelController.instance._CompletedLevel(2);
+                break;
+            case 3:
+                LevelController.instance._CompletedLevel(3);
+                break;
+            default:
+                break;
         }
     }
 }
